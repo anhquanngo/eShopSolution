@@ -7,13 +7,15 @@ using System.Text;
 
 namespace eShopSolution.Data.Configurations
 {
-    public class ProductConfiguration :IEntityTypeConfiguration<Product>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("Product");
+            builder.ToTable("Products");
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
+
 
             builder.Property(x => x.Price).IsRequired();
 
@@ -22,6 +24,8 @@ namespace eShopSolution.Data.Configurations
             builder.Property(x => x.Stock).IsRequired().HasDefaultValue(0);
 
             builder.Property(x => x.ViewCount).IsRequired().HasDefaultValue(0);
+
+
         }
     }
 }

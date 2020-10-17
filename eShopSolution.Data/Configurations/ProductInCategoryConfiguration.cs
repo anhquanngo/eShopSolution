@@ -11,15 +11,15 @@ namespace eShopSolution.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<ProductInCategory> builder)
         {
-            builder.HasKey(t => new { t.CategoryId, t.Product });
+            builder.HasKey(t => new {t.CategoryId, t.ProductId });
 
             builder.ToTable("ProductInCategories");
 
             builder.HasOne(t => t.Product).WithMany(pc => pc.ProductInCategories)
-                .HasForeignKey(pc => pc.ProductId); 
+                .HasForeignKey(pc=>pc.ProductId);
 
             builder.HasOne(t => t.Category).WithMany(pc => pc.ProductInCategories)
-                .HasForeignKey(pc => pc.ProductId);
+              .HasForeignKey(pc => pc.CategoryId);
         }
     }
 }
